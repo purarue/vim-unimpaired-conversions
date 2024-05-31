@@ -1,3 +1,14 @@
+This removes most of the plugin functionality, just keeping the
+`[]u` (url encoding/decoding), `[]y` (C-style string escaping),
+`[]x` (XML/HTML encoding/decoding) mappings.
+
+Goals:
+- [ ] Fix the description of the keymaps when using which-key, seems [someone did something similar here](https://github.com/afreakk/unimpaired-which-key.nvim/blob/main/lua/unimpaired-which-key/init.lua)
+
+---
+
+Original README:
+
 # unimpaired.vim
 
 Much of unimpaired.vim was extracted from my vimrc when I noticed a

@@ -2,8 +2,45 @@ This removes most of the plugin functionality, just keeping the
 `[]u` (url encoding/decoding), `[]y` (C-style string escaping),
 `[]x` (XML/HTML encoding/decoding) mappings.
 
-Goals:
-- [ ] Fix the description of the keymaps when using which-key, seems [someone did something similar here](https://github.com/afreakk/unimpaired-which-key.nvim/blob/main/lua/unimpaired-which-key/init.lua)
+To get nicer [`which-key`](https://github.com/folke/which-key.nvim) descriptions,
+I put the following in my `key_mappings.lua` file:
+
+```lua
+-- nicer vim-unimpaired-conversions mappings
+local visualMaps = {
+    ["[u"] = "url encode",
+    ["[x"] = "xml encode",
+    ["[y"] = "c-string encode",
+    ["]u"] = "url decode",
+    ["]x"] = "xml decode",
+    ["]y"] = "c-string decode"
+}
+
+-- combine visual maps and add normal mode ones
+local normalMaps = vim.tbl_extend("force", visualMaps, {
+    ["[uu"] = "url encode line",
+    ["[xx"] = "xml encode line",
+    ["[yy"] = "c-string encode line",
+    ["]uu"] = "url decode line",
+    ["]xx"] = "xml decode line",
+    ["]yy"] = "c-string decode line"
+})
+
+wk.register(visualMaps, {mode = "v"})
+wk.register(normalMaps, {mode = "n"})
+```
+
+That does not actually bind anything, it just gives it
+nicer descriptions.
+
+Then, for example to load with [`lazy.nvim`](https://github.com/folke/lazy.nvim):
+
+```lua
+{
+    "seanbreckenridge/vim-unimpaired-conversions",
+    keys = {"[", "]"} -- only load plugin when I press '[' or ']'
+}
+```
 
 ---
 

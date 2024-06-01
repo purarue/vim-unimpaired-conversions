@@ -10,6 +10,8 @@ To get nicer [`which-key`](https://github.com/folke/which-key.nvim)
 descriptions, I put the following in my `key_mappings.lua` file:
 
 ```lua
+local wk = require("which-key")
+
 local visualMaps = {
     ["[u"] = "url encode",
     ["[x"] = "xml encode",

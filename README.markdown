@@ -1,32 +1,34 @@
 This removes most of the plugin functionality, just keeping the
-`[]u` (url encoding/decoding), `[]y` (C-style string escaping),
+`[]u` (url encoding/decoding), `[]C` (C-style string escaping),
 `[]x` (XML/HTML encoding/decoding) mappings.
 
 To get nicer [`which-key`](https://github.com/folke/which-key.nvim) descriptions,
 I put the following in my `key_mappings.lua` file:
 
 ```lua
--- nicer vim-unimpaired-conversions mappings
 local visualMaps = {
     ["[u"] = "url encode",
     ["[x"] = "xml encode",
     ["[y"] = "c-string encode",
+    ["[C"] = "c-string-encode",
     ["]u"] = "url decode",
     ["]x"] = "xml decode",
-    ["]y"] = "c-string decode"
-}
+    ["]y"] = "c-string decode",
+    ["]C"] = "c-string-decode"
 
--- combine visual maps and add normal mode ones
-local normalMaps = vim.tbl_extend("force", visualMaps, {
+}
+wk.register(visualMaps, {mode = "v"})
+
+local normalMaps = vim.tbl_extend("keep", visualMaps, {
     ["[uu"] = "url encode line",
     ["[xx"] = "xml encode line",
     ["[yy"] = "c-string encode line",
+    ["[CC"] = "c-string-encode line",
     ["]uu"] = "url decode line",
     ["]xx"] = "xml decode line",
-    ["]yy"] = "c-string decode line"
+    ["]yy"] = "c-string decode line",
+    ["]CC"] = "c-string-decode line"
 })
-
-wk.register(visualMaps, {mode = "v"})
 wk.register(normalMaps, {mode = "n"})
 ```
 

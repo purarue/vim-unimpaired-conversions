@@ -1,9 +1,13 @@
-This removes most of the plugin functionality, just keeping the
-`[]u` (url encoding/decoding), `[]C` (C-style string escaping),
-`[]x` (XML/HTML encoding/decoding) mappings.
+This removes most of the plugin functionality, just keeping the `[]u` (url
+encoding/decoding), `[]C` (C-style string escaping), `[]x` (XML/HTML
+encoding/decoding) functionality. It maps those to the same keys as before.
 
-To get nicer [`which-key`](https://github.com/folke/which-key.nvim) descriptions,
-I put the following in my `key_mappings.lua` file:
+Those are the only mappings that I used from unimpaired which had no obvious
+replacement in Lua (as they're custom logic using a bunch of
+`substitute`/pattern-replace calls).
+
+To get nicer [`which-key`](https://github.com/folke/which-key.nvim)
+descriptions, I put the following in my `key_mappings.lua` file:
 
 ```lua
 local visualMaps = {
@@ -32,8 +36,8 @@ local normalMaps = vim.tbl_extend("keep", visualMaps, {
 wk.register(normalMaps, {mode = "n"})
 ```
 
-That does not actually bind anything, it just gives it
-nicer descriptions.
+These `register` calls does not actually bind anything, it just gives it
+nicer descriptions. The keys are mapped by the vimscript plugin, like normal
 
 Then, for example to load with [`lazy.nvim`](https://github.com/folke/lazy.nvim):
 
@@ -45,8 +49,6 @@ Then, for example to load with [`lazy.nvim`](https://github.com/folke/lazy.nvim)
 ```
 
 ---
-
-Original README:
 
 # unimpaired.vim
 

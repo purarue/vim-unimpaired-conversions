@@ -46,7 +46,8 @@ Then, for example to load with [`lazy.nvim`](https://github.com/folke/lazy.nvim)
 ```lua
 {
     "seanbreckenridge/vim-unimpaired-conversions",
-    keys = {"[", "]"} -- only load plugin when I press '[' or ']'
+    -- load when ] or [ is pressed, in normal or visual mode
+    keys = { { "[", mode = { "n", "v" } }, { "]", mode = { "n", "v" } } },
 }
 ```
 
